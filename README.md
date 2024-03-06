@@ -7,7 +7,7 @@ Note: rewardsReceiptItemList was a column in the form of a JSON array in the rec
 
 ## Answers to Stakeholder questions
 
-### Question: 
+### Question-3: 
 When considering average spending from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
 ### Query:
 WITH AcceptedReceipts AS (  
@@ -32,7 +32,7 @@ The average spend for receipts with 'Rejected' status: 23.32605633802817
 
 similarly, we can also answer other questions which is,
 
-### Question:  
+### Question-4:  
 When considering total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
 ### Query:  
 WITH AcceptedReceipts AS (  
