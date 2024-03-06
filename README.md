@@ -24,6 +24,9 @@ The total number of items purchased from receipts with 'Accepted' status is 8184
 #### Please refer to SqlQueries.pdf to find SQL Queries
 
 ## Data Quality Issues in the Data Provided
-#### Please refer to EDA files attached for data quality issues
+#### Please refer to the EDA files attached for data quality issues.
+
+## Communicate with Stakeholders
+#### Please refer to EmailToStakeholder.pdf to find the mail drafted.
 
 
