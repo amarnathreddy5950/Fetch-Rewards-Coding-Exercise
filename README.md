@@ -27,5 +27,34 @@ SELECT 'Rejected' AS status, AVG(TotalSpent) AS average_spend
 FROM RejectedReceipts;  
 
 ### Result: 
-Average spend for receipts with 'FINISHED' status: 80.85430501930502  
-Average spend for receipts with 'REJECTED' status: 23.32605633802817
+The average spend for receipts with 'Accepted' status: 80.85430501930502  
+The average spend for receipts with 'Rejected' status: 23.32605633802817  
+
+similarly, we can also answer other questions which is,
+
+### Question:  
+When considering total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
+### Query:  
+WITH AcceptedReceipts AS (  
+    SELECT SUM(CAST(rril.quantityPurchased AS INT64)) AS total_items  
+    FROM `isentropic-disk-416201.Rewards.rewardsReceiptItemList` rril  
+    JOIN `isentropic-disk-416201.Rewards.receipts` r  
+    ON r._id__oid = rril._id__oid  
+    WHERE r.rewardsReceiptStatus = 'Finished'  
+),  
+RejectedReceipts AS (  
+    SELECT SUM(CAST(rril.quantityPurchased AS INT64)) AS total_items  
+    FROM `isentropic-disk-416201.Rewards.rewardsReceiptItemList` rril  
+    JOIN `isentropic-disk-416201.Rewards.receipts` r    
+    ON r._id__oid = rril._id__oid  
+    WHERE r.rewardsReceiptStatus = 'Rejected'  
+)  
+SELECT 'Finished' AS status, COALESCE(total_items, 0) AS total_items_purchased  
+FROM AcceptedReceipts  
+UNION ALL  
+SELECT 'Rejected' AS status, COALESCE(total_items, 0) AS total_items_purchased  
+FROM RejectedReceipts;  
+
+### Result:
+Total number of items purchased from receipts with 'Rejected' status: 173.0  
+Total number of items purchased from receipts with 'FINISHED' status: 8184.0
