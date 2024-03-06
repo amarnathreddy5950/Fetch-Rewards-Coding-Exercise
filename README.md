@@ -13,7 +13,7 @@ When considering average spending from receipts with 'rewardsReceiptStatus’ of
 #### Result: 
 The average spend for receipts with 'Accepted' status is 80.85 and 'Rejected' status is 23.32.  
 
-similarly,
+Similarly,
 
 #### Question-4:  
 When considering the total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
@@ -21,8 +21,9 @@ When considering the total number of items purchased from receipts with 'rewards
 #### Result:
 The total number of items purchased from receipts with 'Accepted' status is 8184 and the 'Rejected' status is 173. 
 
-#### you can find the queries attached in SqlQueries.pdf
+#### Please refer to SqlQueries.pdf to find SQL Queries
 
 ## Data Quality Issues in the Data Provided
+#### Please refer to EDA files attached for data quality issues
 
 
