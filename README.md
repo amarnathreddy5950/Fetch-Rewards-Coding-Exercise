@@ -9,52 +9,18 @@ Note: rewardsReceiptItemList was a column in the form of a JSON array in the rec
 
 ### Question-3: 
 When considering average spending from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
-### Query:
-WITH AcceptedReceipts AS (  
-    SELECT TotalSpent  
-    FROM `isentropic-disk-416201.Rewards.receipts`  
-    WHERE rewardsReceiptStatus = 'Accepted'  
-),  
-RejectedReceipts AS (  
-    SELECT TotalSpent  
-    FROM `isentropic-disk-416201.Rewards.receipts`  
-    WHERE rewardsReceiptStatus = 'Rejected'  
-)  
-SELECT 'Accepted' AS status, AVG(TotalSpent) AS average_spend  
-FROM AcceptedReceipts  
-UNION ALL  
-SELECT 'Rejected' AS status, AVG(TotalSpent) AS average_spend  
-FROM RejectedReceipts;  
 
 ### Result: 
-The average spend for receipts with 'Accepted' status: 80.85430501930502  
-The average spend for receipts with 'Rejected' status: 23.32605633802817  
+The average spend for receipts with 'Accepted' status is 80.85 and 'Rejected' status is 23.32.  
 
-similarly, we can also answer other questions which is,
+similarly, we can also answer other question which is,
 
 ### Question-4:  
-When considering total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
-### Query:  
-WITH AcceptedReceipts AS (  
-    SELECT SUM(CAST(rril.quantityPurchased AS INT64)) AS total_items  
-    FROM `isentropic-disk-416201.Rewards.rewardsReceiptItemList` rril  
-    JOIN `isentropic-disk-416201.Rewards.receipts` r  
-    ON r._id__oid = rril._id__oid  
-    WHERE r.rewardsReceiptStatus = 'Finished'  
-),  
-RejectedReceipts AS (  
-    SELECT SUM(CAST(rril.quantityPurchased AS INT64)) AS total_items  
-    FROM `isentropic-disk-416201.Rewards.rewardsReceiptItemList` rril  
-    JOIN `isentropic-disk-416201.Rewards.receipts` r    
-    ON r._id__oid = rril._id__oid  
-    WHERE r.rewardsReceiptStatus = 'Rejected'  
-)  
-SELECT 'Finished' AS status, COALESCE(total_items, 0) AS total_items_purchased  
-FROM AcceptedReceipts  
-UNION ALL  
-SELECT 'Rejected' AS status, COALESCE(total_items, 0) AS total_items_purchased  
-FROM RejectedReceipts;  
+When considering the total number of items purchased from receipts with 'rewardsReceiptStatus’ of ‘Accepted’ or ‘Rejected’, which is greater?
 
 ### Result:
-Total number of items purchased from receipts with 'Rejected' status: 173.0  
-Total number of items purchased from receipts with 'FINISHED' status: 8184.0
+Total number of items purchased from receipts with 'Accepted' status is 8184 and 'Rejected' status is 173. 
+
+## Data Quality Issues in the Data Provided
+
+
